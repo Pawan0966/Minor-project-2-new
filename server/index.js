@@ -16,8 +16,9 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static files from the public directory
-app.use(express.static(path.join(__dirname, '../public')));
+// Important: The order matters - more specific routes should come first
 app.use('/models', express.static(path.join(__dirname, '../public/models')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Connect to MongoDB with updated options
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/virtual-herbal-garden')
