@@ -4,7 +4,6 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const plantRoutes = require('./routes/plantRoutes');
 
-
 dotenv.config();
 
 const app = express();
@@ -17,11 +16,13 @@ app.use(express.json());
 // Routes
 app.use("/api/plants", plantRoutes);
 
-// MongoDB Connection
-mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// MongoDB Connection with updated options
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/virtual-herbal-garden')
   .then(() => {
-    console.log("MongoDB connected ✅");
-    app.listen(PORT, () => console.log(`Server running on port ${PORT} 🚀`));
+    console.log("✅ MongoDB connected successfully");
+    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
   })
-  .catch((err) => console.error("MongoDB connection error ❌", err));
+  .catch((err) => {
+    console.error("❌ MongoDB connection error:", err.message);
+    process.exit(1);
+  });

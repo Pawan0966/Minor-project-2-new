@@ -19,10 +19,15 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/models', express.static(path.join(__dirname, '../public/models')));
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+// Connect to MongoDB with updated options
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/virtual-herbal-garden')
+  .then(() => {
+    console.log('✅ Connected to MongoDB successfully');
+  })
+  .catch((err) => {
+    console.error('❌ MongoDB connection error:', err.message);
+    process.exit(1); // Exit if cannot connect to database
+  });
 
 // Routes
 app.use('/api/plants', plantRoutes);
@@ -32,5 +37,5 @@ app.use('/api/chatbot', chatbotRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
