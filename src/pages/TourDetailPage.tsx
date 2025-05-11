@@ -53,22 +53,22 @@ const TourDetailPage: React.FC = () => {
     {
       title: 'Welcome to the Garden',
       description: 'Begin your journey through our medicinal herb garden focused on digestive health.',
-      modelUrl: '/models/garden-entrance.glb'
+      modelUrl: '' // Empty string will trigger the fallback UI
     },
     {
       title: 'Tulsi (Holy Basil)',
       description: 'Our first stop is at the sacred Tulsi plant, known for its ability to support digestive function and reduce bloating.',
-      modelUrl: '/models/tulsi.glb'
+      modelUrl: '' // Empty string will trigger the fallback UI
     },
     {
       title: 'Ginger Root',
       description: 'Next, we explore the powerful ginger plant, a cornerstone of digestive health in Ayurvedic medicine.',
-      modelUrl: '/models/ginger.glb'
+      modelUrl: '' // Empty string will trigger the fallback UI
     },
     {
       title: 'Mint Garden',
       description: 'Finally, we visit our mint garden, showcasing various mint varieties used for digestive comfort.',
-      modelUrl: '/models/mint.glb'
+      modelUrl: '' // Empty string will trigger the fallback UI
     }
   ];
 
